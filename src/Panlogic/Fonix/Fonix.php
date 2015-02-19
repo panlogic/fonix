@@ -178,8 +178,8 @@ class Fonix {
 		$body = $response->getBody();
 		$result->statusCode = $response->getStatusCode();
 		$result->reason = $response->getReasonPhrase();
-		$result->json = isset($body->json()) ? $body->json : '';
-		$result->xml = isset($body->xml()) ? $body->xml : '';
+		$result->json = isset($body->json()) ? $body->json() : '';
+		$result->xml = isset($body->xml()) ? $body->xml() : '';
 		$result->body = $body;
 		return $result;
 	}
