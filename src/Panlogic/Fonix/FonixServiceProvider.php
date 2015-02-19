@@ -33,7 +33,7 @@ class FonixServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__ . '/../../config/fonix.php' => config_path('fonix.php'),
+			__DIR__ . '/../config/fonix.php' => config_path('fonix.php'),
 		]);
 	}
 
