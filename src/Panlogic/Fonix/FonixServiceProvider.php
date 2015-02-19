@@ -16,7 +16,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-classFonixServiceProvider extends ServiceProvider {
+class FonixServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -32,7 +32,7 @@ classFonixServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('panlogic/fonix', 'panlogic/fonix');
+
 	}
 
 	/**
