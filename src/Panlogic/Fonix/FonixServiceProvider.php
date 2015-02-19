@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.0
+* @version 1.0.3
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -15,15 +15,10 @@
 */
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
+use Panlogic\Fonix\Exceptions\FonixException;
 
 class FonixServiceProvider extends ServiceProvider {
-
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
 
 	/**
 	 * Boot the service provider.
@@ -33,8 +28,13 @@ class FonixServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__ . '/../config/fonix.php' => config_path('fonix.php'),
+			__DIR__ . '/../config/fonix.php' => config_path('panlogic.fonix.php'),
 		]);
+
+		AliasLoader::getInstance()->alias(
+            'Fonix',
+            'Panlogic\Fonix\Facades\FonixFacade'
+        );
 	}
 
 	/**
@@ -44,25 +44,31 @@ class FonixServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['fonix'] = $this->app->share(function($app)
+		$this->app->singleton('Panlogic\Fonix\Fonix', function ($app)
 		{
-			return new Fonix;
-		});
+			if (is_null(config('panlogic.fonix.live_apikey')))
+			{
+				throw new FonixException;
+			}
 
-		$this->app->booting(function()
-		{
-			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
-			$loader->alias('Fonix', 'Panlogic\Fonix\Facades\Fonix');
+			$config = [
+				'live_apikey' 		=> config('panlogic.fonix.live_apikey'),
+				'test_apikey' 		=> config('panlogic.fonix.test_apikey'),
+				'platform' 			=> config('panlogic.fonix.platform'),
+				'originator' 		=> config('panlogic.fonix.originator'),
+			];
+
+			return new Fonix($config);
 		});
 	}
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array('fonix');
-	}
+	 /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['Panlogic\Fonix\Fonix'];
+    }
 }

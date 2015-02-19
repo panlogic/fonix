@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.0
+* @version 1.0.2
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -24,7 +24,7 @@ class Fonix {
 	 *
 	 * @var string
 	 */
-	private $version = "1.0";
+	private $version = "1.0.2";
 
 	/**
 	 * A Guzzle HTTP Client object
@@ -107,7 +107,7 @@ class Fonix {
 	 *
 	 * @return void
 	 */
-	public function __construct($config)
+	public function __construct($config = array())
 	{
 		$this->apikey = $config['platform'] == 'live' ? $config['live_apikey'] : $config['test_apikey'];
 		$this->originator = $config['originator'];
@@ -178,8 +178,8 @@ class Fonix {
 		$body = $response->getBody();
 		$result->statusCode = $response->getStatusCode();
 		$result->reason = $response->getReasonPhrase();
-		$result->json = isset($body->json()) ? $body->json() : '';
-		$result->xml = isset($body->xml()) ? $body->xml() : '';
+		$result->json = $body->json();
+		$result->xml = $body->xml();
 		$result->body = $body;
 		return $result;
 	}

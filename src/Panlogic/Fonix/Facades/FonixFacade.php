@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.0
+* @version 1.0.1
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -16,12 +16,12 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Fonix extends Facade {
+class FonixFacade extends Facade {
 
 	/**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'fonix'; }
+    protected static function getFacadeAccessor() { return 'Fonix'; }
 }
