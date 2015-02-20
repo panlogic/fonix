@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.3
+* @version 1.0.4
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -15,7 +15,6 @@
 */
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 use Panlogic\Fonix\Exceptions\FonixException;
 
 class FonixServiceProvider extends ServiceProvider {
@@ -30,11 +29,6 @@ class FonixServiceProvider extends ServiceProvider {
 		$this->publishes([
 			__DIR__ . '/../config/fonix.php' => config_path('panlogic.fonix.php'),
 		]);
-
-		AliasLoader::getInstance()->alias(
-            'Fonix',
-            'Panlogic\Fonix\Facades\FonixFacade'
-        );
 	}
 
 	/**
@@ -44,31 +38,26 @@ class FonixServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->singleton('Panlogic\Fonix\Fonix', function ($app)
+		$this->app->bindShared('fonix', function ($app)
 		{
 			if (is_null(config('panlogic.fonix.live_apikey')))
 			{
 				throw new FonixException;
 			}
 
-			$config = [
-				'live_apikey' 		=> config('panlogic.fonix.live_apikey'),
-				'test_apikey' 		=> config('panlogic.fonix.test_apikey'),
-				'platform' 			=> config('panlogic.fonix.platform'),
-				'originator' 		=> config('panlogic.fonix.originator'),
-			];
-
-			return new Fonix($config);
+			return new Fonix($app['config']['panlogic.fonix']);
 		});
+
+		$this->app->alias('fonix', 'Panlogic\Fonix\Fonix');
 	}
 
 	 /**
      * Get the services provided by the provider.
      *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['Panlogic\Fonix\Fonix'];
-    }
+	 * @return array
+	 */
+	public function provides()
+	{
+		return ['fonix','Panlogic\Fonix\Fonix'];
+	}
 }

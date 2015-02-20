@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.1
+* @version 1.0.2
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -23,5 +23,5 @@ class FonixFacade extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'Fonix'; }
+    protected static function getFacadeAccessor() { return 'fonix'; }
 }

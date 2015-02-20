@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.2
+* @version 1.0.3
 * @author Panlogic Ltd
 * @license GPL3
 * @copyright (c) 2015, Panlogic Ltd
@@ -174,7 +174,7 @@ class Fonix {
 	 */
 	private function response($response)
 	{
-		$result = new stdObject();
+		$result = new stdClass();
 		$body = $response->getBody();
 		$result->statusCode = $response->getStatusCode();
 		$result->reason = $response->getReasonPhrase();
@@ -191,7 +191,7 @@ class Fonix {
 	 */
 	private function basicMOResponse()
 	{
-		$return = new StdObject();
+		$return = new stdClass();
 		$return->ifversion = isset($_POST['IFVERSION']) ? $_POST['IFVERSION'] : '';
 		$return->monumber = isset($_POST['MONUMBER']) ? $_POST['MONUMBER'] : '';
 		$return->operator = isset($_POST['OPERATOR']) ? $_POST['OPERATOR'] : '';
@@ -210,7 +210,7 @@ class Fonix {
 	 */
 	public function sendSMS($body = array())
 	{
-		$this->requestOptions['body'] = array_merge($this->requestOptions['body'], $body);
+		$this->requestOptions['body'] = $body;
 		$this->endpoint = 'sendsms';
 		return $this->response($this->call());
 	}
@@ -223,7 +223,7 @@ class Fonix {
 	 */
 	public function chargeSMS($body = array())
 	{
-		$this->requestOptions['body'] = array_merge($this->requestOptions['body'], $body);
+		$this->requestOptions['body'] = $body;
 		$this->endpoint = 'sendsms';
 		return $this->response($this->call());
 	}
@@ -236,7 +236,7 @@ class Fonix {
 	 */
 	public function sendBinarySMS($body = array())
 	{
-		$this->requestOptions['binbody'] = array_merge($this->requestOptions['binbody'], $body);
+		$this->requestOptions['binbody'] = $body;
 		$this->endpoint = 'sendbinsms';
 		return $this->response($this->call());
 	}
