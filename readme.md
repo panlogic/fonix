@@ -16,17 +16,13 @@ To install Fonix as a Composer package, simply add this to your composer.json:
 ..and run `composer update`.  Once it's installed, if you're using Laravel 5, you can register the service provider in `app/config/app.php` in the `providers` array add :
 
 ```php
-
-	'Panlogic\Fonix\FonixServiceProvider',
-
+'Panlogic\Fonix\FonixServiceProvider',
 ```
 
 You can also benefit from using a Fonix Facade in Laravel 5 by adding to the alias array also in app.php below the providers array
 
 ```php
-
-	'Fonix'    => 'Panlogic\Fonix\Facades\FonixFacade',
-
+'Fonix'    => 'Panlogic\Fonix\Facades\FonixFacade',
 ```
 
 ## Documentation
@@ -34,15 +30,14 @@ You can also benefit from using a Fonix Facade in Laravel 5 by adding to the ali
 If you're using Laravel, publish the config file by running
 
 ```php
-
-	php artisan vendor:publish
-
+php artisan vendor:publish
 ```
 
 This will create a panlogic.fonix.php file in your Config directory, be sure to fill in the appropriate details provided by Fonix.
 
 If you aren't using Laravel then you can create a Fonix object by:
 
+```php
 use Panlogic\Fonix\Fonix;
 
 $config = [
@@ -53,6 +48,9 @@ $config = [
 ];
 
 $fonix = new Fonix($config);
+```
+
+For more information about how to use the Fonix class, read the [Wiki](https://github.com/panlogic/fonix/wiki)
 
 ## Copyright and Licence
 

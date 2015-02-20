@@ -3,7 +3,7 @@
     "description": "Fonix.io PHP library helper",
     "keywords": ["fonix", "sms"],
     "homepage": "http://github.com/panlogic/fonix",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Panlogic Ltd",
