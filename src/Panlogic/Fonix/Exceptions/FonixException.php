@@ -9,7 +9,7 @@
 * @package Fonix
 * @version 1.0.0
 * @author Panlogic Ltd
-* @license GPL3
+* @license MIT
 * @copyright (c) 2015, Panlogic Ltd
 * @link http://www.panlogic.co.uk
 */
