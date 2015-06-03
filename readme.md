@@ -33,7 +33,12 @@ If you're using Laravel, publish the config file by running
 php artisan vendor:publish
 ```
 
-This will create a panlogic.fonix.php file in your Config directory, be sure to fill in the appropriate details provided by Fonix.
+This will create a panlogic.fonix.php file in your Config directory, be sure to fill in the appropriate details provided by Fonix in your env file.
+
+FONIX_API_KEY_LIVE=
+FONIX_API_KEY_TEST=
+FONIX_PLATFORM=
+FONIX_ORIGINATOR=
 
 If you aren't using Laravel then you can create a Fonix object by:
 

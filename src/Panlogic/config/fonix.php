@@ -11,7 +11,7 @@ return [
 	|
 	*/
 
-	'live_apikey'	=> 'your-live-api-key-here',
+	'live_apikey'	=> env('FONIX_API_KEY_LIVE','your-live-api-key-here'),
 
 	/*
 	|---------------------------------------------------------
@@ -22,7 +22,7 @@ return [
 	|
 	*/
 
-	'test_apikey'	=> 'your-test-api-key-here',
+	'test_apikey'	=> env('FONIX_API_KEY_TEST','your-test-api-key-here'),
 
 	/*
 	|---------------------------------------------------------
@@ -34,7 +34,7 @@ return [
 	|
 	*/
 
-	'platform'		=> 'test',
+	'platform'		=> env('FONIX_PLATFORM','test'),
 
 	/*
 	|---------------------------------------------------------
@@ -45,6 +45,6 @@ return [
 	|
 	*/
 
-	'originator'		=> '12345',
+	'originator'		=> env('FONIX_ORIGINATOR','12345'),
 
 ];
