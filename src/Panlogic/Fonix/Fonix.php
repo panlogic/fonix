@@ -24,7 +24,7 @@ class Fonix {
 	 *
 	 * @var string
 	 */
-	private $version = "1.0.2";
+	private $version = "1.0.3";
 
 	/**
 	 * A Guzzle HTTP Client object
@@ -274,6 +274,20 @@ class Fonix {
 	}
 
 	/**
+	 * Send a Chargeable SMS message for Vodaphone
+	 *
+	 * @param  array  $body
+	 * @return Object
+	 */
+	public function chargeMobile($body = array(), $originator = null)
+	{
+		$this->requestOptions['body'] = $body;
+		$this->endpoint = 'chargemobile';
+		$this->setOriginator($originator);
+		return $this->response($this->call());
+	}
+
+	/**
 	 * Send a Binary SMS message
 	 *
 	 * @param  array  $body
@@ -353,6 +367,25 @@ class Fonix {
 		$return->statustext = isset($_POST['STATUSTEXT']) ? $_POST['STATUSTEXT'] : '';
 		$return->statustime = isset($_POST['STATUSTIME']) ? $_POST['STATUSTIME'] : '';
 		$return->price = isset($_POST['PRICE']) ? $_POST['PRICE'] : '';
+		return $return;
+	}
+
+	/**
+	 * Get the delivery receipt return parameters from Billing API
+	 *
+	 * @return Object
+	 */
+	public function getChargeReport()
+	{
+		$return = new \stdClass();
+		$return->ifversion = isset($_POST['IFVERSION']) ? $_POST['IFVERSION'] : '';
+		$return->operator = isset($_POST['OPERATOR']) ? $_POST['OPERATOR'] : '';
+		$return->monumber = isset($_POST['MONUMBER']) ? $_POST['MONUMBER'] : '';
+		$return->statuscode = isset($_POST['STATUSCODE']) ? $_POST['STATUSCODE'] : '';
+		$return->statustext = isset($_POST['STATUSTEXT']) ? $_POST['STATUSTEXT'] : '';
+		$return->statustime = isset($_POST['STATUSTIME']) ? $_POST['STATUSTIME'] : '';
+		$return->guid = isset($_POST['GUID']) ? $_POST['GUID'] : '';
+		$return->requestid = isset($_POST['REQUESTID']) ? $_POST['REQUESTID'] : '';
 		return $return;
 	}
 
