@@ -7,7 +7,7 @@
 * Licensed under the terms from Panlogic Ltd.
 *
 * @package Fonix
-* @version 1.0.4
+* @version 1.0.5
 * @author Panlogic Ltd
 * @license MIT
 * @copyright (c) 2015, Panlogic Ltd
@@ -366,7 +366,8 @@ class Fonix {
 		$return->statuscode = isset($_POST['STATUSCODE']) ? $_POST['STATUSCODE'] : '';
 		$return->statustext = isset($_POST['STATUSTEXT']) ? $_POST['STATUSTEXT'] : '';
 		$return->statustime = isset($_POST['STATUSTIME']) ? $_POST['STATUSTIME'] : '';
-		$return->price = isset($_POST['PRICE']) ? $_POST['PRICE'] : '';
+		$return->price 		= isset($_POST['PRICE']) ? $_POST['PRICE'] : '';
+		$return->requestid  = isset($_POST['REQUESTID']) ? $_POST['REQUESTID'] : '';
 		return $return;
 	}
 
