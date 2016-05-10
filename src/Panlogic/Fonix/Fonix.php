@@ -367,7 +367,7 @@ class Fonix {
 		$return->statustext = isset($_POST['STATUSTEXT']) ? $_POST['STATUSTEXT'] : '';
 		$return->statustime = isset($_POST['STATUSTIME']) ? $_POST['STATUSTIME'] : '';
 		$return->price 		= isset($_POST['PRICE']) ? $_POST['PRICE'] : '';
-		$return->requestid  = isset($_POST['REQUESTID']) ? $_POST['REQUESTID'] : '';
+		$return->request_id  = isset($_POST['REQUESTID']) ? $_POST['REQUESTID'] : '';
 		return $return;
 	}
 
