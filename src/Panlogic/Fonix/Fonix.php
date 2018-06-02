@@ -24,7 +24,7 @@ class Fonix {
 	 *
 	 * @var string
 	 */
-	private $version = "1.0.3";
+	private $version = "1.0.4";
 
 	/**
 	 * A Guzzle HTTP Client object
